@@ -16,3 +16,8 @@ body{
 .font-cinzel{
     font-family: "Cinzel", serif;
 }
+
+.featured-item{
+    background: linear-gradient( rgba(0, 0, 0, 0.594) , rgba(0, 0, 0, 0.594)), url('assets/home/featured.jpg');
+    background-attachment: fixed;
+}
