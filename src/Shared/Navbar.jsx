@@ -4,8 +4,7 @@ import { NavLink } from 'react-router-dom';
 const Navbar = () => {
     const links = <>
         <li><NavLink to={'/'}>Home</NavLink></li>
-        <li><NavLink to={'/about'}>About</NavLink></li>
-        <li><NavLink to={'/'}>Home</NavLink></li>
+        <li><NavLink to={'/menu'}>menu</NavLink></li>
     </>
     return (
         <div className="navbar fixed z-10 bg-opacity-30 bg-black text-white">
