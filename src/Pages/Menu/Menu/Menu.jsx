@@ -2,6 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import PageCover from '../../../Shared/PageCover';
 import pageCoverBg from '../../../assets/menu/banner3.jpg'
+import MenuItem from '../../../Shared/MenuItem';
 
 const Menu = () => {
     return (

@@ -7,7 +7,7 @@ const PageCover = ({ img, title, subTitle }) => {
             <div
                 className=" h-[800px] flex flex-col items-center justify-center">
                 <div className=" text-center ">
-                    <div className=" text-white bg-[#1515159c] px-72 py-24 mx-auto ">
+                    <div className=" text-white bg-[#151515a3] px-80 py-28 mx-auto ">
                         <h1 className="mb-5 text-[88px] font-cinzel font-bold">{title}</h1>
                         <p className="mb-5 text-2xl font-cinzel font-semibold">{subTitle}</p>
                     </div>
