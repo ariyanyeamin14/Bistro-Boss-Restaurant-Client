@@ -22,3 +22,10 @@ body{
     background: linear-gradient( rgba(0, 0, 0, 0.594) , rgba(0, 0, 0, 0.594)), url('assets/home/featured.jpg');
     background-attachment: fixed;
 }
+.react-tabs__tab{
+    font-size: 22px;
+    font-weight: 600;
+}
+.react-tabs__tab--selected{
+    color: #BB8506 !important;
+}

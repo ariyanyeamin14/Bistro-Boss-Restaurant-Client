@@ -33,25 +33,25 @@ const Menu = () => {
             ></TodaysOffer>
             <MenuSection
                 coverBg={desertBg}
-                coverTitle="DESSERTS"
+                coverTitle="dessert"
                 coverSubTitle="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                 items={dessert}
             ></MenuSection>
             <MenuSection
                 coverBg={pizzaBg}
-                coverTitle="PIZZA"
+                coverTitle="pizza"
                 coverSubTitle="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                 items={pizza}
             ></MenuSection>
             <MenuSection
                 coverBg={saladBg}
-                coverTitle="SALADS"
+                coverTitle="salad"
                 coverSubTitle="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                 items={salad}
             ></MenuSection>
             <MenuSection
                 coverBg={soupBg}
-                coverTitle="SOUPS"
+                coverTitle="soup"
                 coverSubTitle="Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
                 items={soup}
             ></MenuSection>
