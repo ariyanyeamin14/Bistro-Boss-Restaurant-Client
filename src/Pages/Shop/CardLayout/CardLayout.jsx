@@ -8,8 +8,9 @@ const CardLayout = ({ items }) => {
                     <div key={item._id} className="card rounded-none bg-base-200 ">
                         <figure >
                             <img className='w-full'
-                                src={item.image}/>
+                                src={item.image} />
                         </figure>
+                        <p className='text-white font-semibold bg-[#111827] w-fit px-5 py-3 absolute right-2 top-2'>$ {item.price}</p>
                         <div className="card-body items-center text-center">
                             <h2 className="card-title text-2xl font-semibold">{item.name}</h2>
                             <p className='text-[#737373] my-6'>{item.recipe}</p>
