@@ -27,7 +27,7 @@ const Testimonials = () => {
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])
-    console.log(reviews)
+
     return (
         <div className='my-24 w-[70%] mx-auto'>
             <SectionTitle
