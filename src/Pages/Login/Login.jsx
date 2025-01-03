@@ -1,6 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+
 
 const Login = () => {
+    const [capchaValue, setCapchaValue] = useState()
+    const [disabled, setDisabled] = useState(true)
+
+    useEffect(() => {
+        loadCaptchaEnginge(6);
+    }, [])
+
+    useEffect(()=>{
+        if (validateCaptcha(capchaValue)==true) {
+            setDisabled(false)
+        }
+        else{
+            setDisabled(true)
+        }
+    }, [capchaValue])
+
+    console.log(capchaValue)
+
     return (
         <div className="hero bg-base-200 min-h-screen">
             <div className="hero-content flex-col lg:flex-row-reverse">
@@ -28,8 +48,14 @@ const Login = () => {
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
+                        <div className="form-control">
+                            <label className="label">
+                            < LoadCanvasTemplateNoReload />
+                            </label>
+                            <input onBlur={(e) => setCapchaValue(e.target.value)} type="text" name='capcha' placeholder="Type capcha & click outside" className="input input-bordered" required />
+                        </div>
                         <div className="form-control mt-6">
-                            <button className="btn btn-primary">Login</button>
+                            <button onClick={() => handleSubmit(e)} disabled={disabled} className="btn btn-primary">Login</button>
                         </div>
                     </form>
                 </div>
