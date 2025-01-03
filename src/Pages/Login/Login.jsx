@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import React, { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
     const [capchaValue, setCapchaValue] = useState()
     const [disabled, setDisabled] = useState(true)
+    const {loginUser} = useContext(AuthContext)
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -19,7 +23,25 @@ const Login = () => {
         }
     }, [capchaValue])
 
-    console.log(capchaValue)
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password)
+
+        loginUser(email, password)
+        .then((userCredential) => {
+            // Signed in 
+            const user = userCredential.user;
+            console.log(user)
+            Swal.fire({
+                title: "Login Successfull!",
+                icon: "success",
+                draggable: true
+              });
+          })
+    }
 
     return (
         <div className="hero bg-base-200 min-h-screen">
@@ -32,32 +54,33 @@ const Login = () => {
                     </p>
                 </div>
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                    <form className="card-body">
+                    <form onSubmit={handleSubmit} className="card-body">
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Email</span>
                             </label>
-                            <input type="email" placeholder="email" className="input input-bordered" required />
+                            <input name='email' type="email" placeholder="email" className="input input-bordered" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="password" placeholder="password" className="input input-bordered" required />
+                            <input name='password' type="password" placeholder="password" className="input input-bordered" required />
                             <label className="label">
                                 <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
                         </div>
                         <div className="form-control">
                             <label className="label">
-                            < LoadCanvasTemplateNoReload />
+                            < LoadCanvasTemplate />
                             </label>
                             <input onBlur={(e) => setCapchaValue(e.target.value)} type="text" name='capcha' placeholder="Type capcha & click outside" className="input input-bordered" required />
                         </div>
                         <div className="form-control mt-6">
-                            <button onClick={() => handleSubmit(e)} disabled={disabled} className="btn btn-primary">Login</button>
+                            <button disabled={disabled} className="btn btn-primary bg-[#d1a054] text-white border-none">Sign In</button>
                         </div>
                     </form>
+                    <p className='text-center text-[#d1a054] pb-4'>New here? <Link to={'/signup'}>Create a New Account</Link></p>
                 </div>
             </div>
         </div>
