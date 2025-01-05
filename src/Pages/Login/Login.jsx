@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, replace, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
@@ -9,6 +9,10 @@ const Login = () => {
     const [capchaValue, setCapchaValue] = useState()
     const [disabled, setDisabled] = useState(true)
     const {loginUser} = useContext(AuthContext)
+    const location = useLocation()
+    const navigate = useNavigate()
+
+    const from = location.state?.from?.pathname || '/';
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -40,6 +44,7 @@ const Login = () => {
                 icon: "success",
                 draggable: true
               });
+            navigate(from, { replace: true})
           })
     }
 
