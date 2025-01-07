@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { AuthContext } from '../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import { FaShoppingCart } from 'react-icons/fa';
 
 const Navbar = () => {
     const { user, logoutUser } = useContext(AuthContext)
@@ -28,6 +29,10 @@ const Navbar = () => {
                     <li><NavLink to={'/signup'}>Signup</NavLink></li>
                 </>
         }
+        <li><button className="">
+            <FaShoppingCart size={25}/>
+            <div className="badge text-md badge-secondary">+0</div>
+        </button></li>
     </>
     return (
         <div className="navbar fixed z-10 bg-opacity-30 bg-black text-white">
@@ -58,7 +63,7 @@ const Navbar = () => {
                 <a className="btn btn-ghost text-xl">daisyUI</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1 items-center">
                     {
                         links
                     }

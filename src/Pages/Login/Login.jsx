@@ -82,7 +82,7 @@ const Login = () => {
                             <input onBlur={(e) => setCapchaValue(e.target.value)} type="text" name='capcha' placeholder="Type capcha & click outside" className="input input-bordered" required />
                         </div>
                         <div className="form-control mt-6">
-                            <button disabled={disabled} className="btn btn-primary bg-[#d1a054] text-white border-none">Sign In</button>
+                            <button disabled={false} className="btn btn-primary bg-[#d1a054] text-white border-none">Sign In</button>
                         </div>
                     </form>
                     <p className='text-center text-[#d1a054] pb-4'>New here? <Link to={'/signup'}>Create a New Account</Link></p>
