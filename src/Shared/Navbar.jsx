@@ -4,10 +4,12 @@ import { AuthContext } from '../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { FaShoppingCart } from 'react-icons/fa';
 import useCart from '../Hooks/useCart';
+import useAdmin from '../Hooks/useAdmin';
 
 const Navbar = () => {
     const { user, logoutUser } = useContext(AuthContext)
-    const [cart] = useCart()
+    const [cart] = useCart();
+    const[isAdmin] = useAdmin()
 
     const handleLogout = () => {
         logoutUser()
@@ -31,10 +33,18 @@ const Navbar = () => {
                     <li><NavLink to={'/signup'}>Signup</NavLink></li>
                 </>
         }
-        <li><button className="">
-            <FaShoppingCart size={25}/>
-            <div className="badge text-md badge-secondary">{cart.length}</div>
-        </button></li>
+        <li>
+            <NavLink to='/dashboard/cart' className="">
+                <FaShoppingCart size={25} />
+                <div className="badge text-md badge-secondary">{cart.length}</div>
+            </NavLink>
+        </li>
+        {
+           user && isAdmin && <li><NavLink to={'/dashboard/adminHome'}>Dashboard</NavLink></li>
+        }
+        {
+           user && !isAdmin && <li><NavLink to={'/dashboard/userHome'}>Dashboard</NavLink></li>
+        }
     </>
     return (
         <div className="navbar fixed z-10 bg-opacity-30 bg-black text-white">

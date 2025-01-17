@@ -3,6 +3,7 @@ import { Link, replace, useLocation, useNavigate } from 'react-router-dom';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import SocialLogin from '../../Components/SocialLogin/SocialLogin';
 
 
 const Login = () => {
@@ -32,13 +33,13 @@ const Login = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password)
+        // console.log(email, password)
 
         loginUser(email, password)
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            console.log(user)
+            // console.log(user)
             Swal.fire({
                 title: "Login Successfull!",
                 icon: "success",
@@ -85,7 +86,11 @@ const Login = () => {
                             <button disabled={false} className="btn btn-primary bg-[#d1a054] text-white border-none">Sign In</button>
                         </div>
                     </form>
-                    <p className='text-center text-[#d1a054] pb-4'>New here? <Link to={'/signup'}>Create a New Account</Link></p>
+                    <p className='text-center text-[#d1a054]'>New here? <Link to={'/signup'}>Create a New Account</Link></p>
+                    <div className='card-body'>
+                        <div className='divider'></div>
+                        <SocialLogin></SocialLogin>
+                    </div>
                 </div>
             </div>
         </div>

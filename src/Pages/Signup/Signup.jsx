@@ -2,10 +2,13 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import SocialLogin from '../../Components/SocialLogin/SocialLogin';
 
 const Signup = () => {
     const { createUser, updateUserProfile, logoutUser } = useContext(AuthContext)
     const navigate = useNavigate()
+    const axiosPublic = useAxiosPublic()
 
     const handleSubmit = e => {
         e.preventDefault()
@@ -18,10 +21,23 @@ const Signup = () => {
         createUser(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user)
+                // console.log(user)
                 updateUserProfile(name, image)
-                logoutUser()
-                navigate('/')
+                    .then(() => {
+                        const userInfo = {
+                            name: name,
+                            email: email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                            .then(res => {
+                                if (res.data.insertedId) {
+                                    // console.log('user signuped and updated profile')
+                                    logoutUser()
+                                    navigate('/')
+                                }
+                            })
+                    })
+
                 // .then(()=>{
                 //     console.log('user updated')
                 // })
@@ -70,7 +86,11 @@ const Signup = () => {
                             <button className="btn border-none text-white bg-[#d1a054]  btn-primary">Sign Up</button>
                         </div>
                     </form>
-                    <p className='text-center text-[#d1a054] pb-4'>Already registered? <Link to={'/login'}>Go to Log In</Link></p>
+                    <p className='text-center text-[#d1a054] '>Already registered? <Link to={'/login'}>Go to Log In</Link></p>
+                    <div className='card-body'>
+                        <div className='divider'></div>
+                        <SocialLogin></SocialLogin>
+                    </div>
                 </div>
             </div>
         </div>

@@ -3,6 +3,7 @@ import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import useCart from '../../Hooks/useCart';
 
 const FoodCard = ({item}) => {
     const { name, image, price, recipe, _id } = item
@@ -10,8 +11,9 @@ const FoodCard = ({item}) => {
     const nagigate = useNavigate()
     const location = useLocation()
     const axiosSecure = useAxiosSecure()
+    const [, refetch] = useCart()
 
-    const handleAddToCart = (food) => {
+    const handleAddToCart = () => {
         if(user && user.email){
             const cartItem = {
                 menuId: _id,
@@ -30,6 +32,8 @@ const FoodCard = ({item}) => {
                         showConfirmButton: false,
                         timer: 1500
                       });
+
+                      refetch()
                 }
             })
         }
@@ -60,7 +64,7 @@ const FoodCard = ({item}) => {
                 <h2 className="card-title text-2xl font-semibold">{name}</h2>
                 <p className='text-[#737373] my-6'>{recipe}</p>
                 <div className="card-actions">
-                    <button onClick={() => handleAddToCart(item)} className=" px-[30px] py-[20px] uppercase rounded-lg text-xl font-medium bg-[#e3e3e3d3] text-[#BB8506] btn-primary border-b-4 border-b-[#BB8506]">Add To Card</button>
+                    <button onClick={handleAddToCart} className=" px-[30px] py-[20px] uppercase rounded-lg text-xl font-medium bg-[#e3e3e3d3] text-[#BB8506] btn-primary border-b-4 border-b-[#BB8506]">Add To Card</button>
                 </div>
             </div>
         </div>
